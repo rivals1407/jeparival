@@ -1,208 +1,140 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Galeri Foto</title>
-    <link rel="icon" href="assets/file/img/p.jpg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galeri Foto</title>
+  <link rel="icon" href="assets/img/p.jpg">
 
-    <!-- CSS Eksternal -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 
-    <!-- JS Eksternal -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
-    <style>
-        /* Background warna keseluruhan halaman */
-        body {
-            background-color: #FF69B4; /* Ganti dengan warna yang diinginkan */
-        }
-
-        /* Carousel Image */
-        .carousel-image {
-            height: 450px;
-            object-fit: cover;
-        }
-
-        @media (max-width: 768px) {
-            .carousel-image {
-                height: 250px;
-            }
-        }
-
-        /* Kotak */
-        .kotak {
-            height: 350px;
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 15px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
-            position: relative;
-            text-align: center;
-        }
-
-        .kotak:hover {
-            background-color: #87CEFA;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            color: #fff;
-        }
-
-        /* Gambar dalam kotak */
-        .kotak-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            transition: transform 0.4s ease;
-        }
-
-        .kotak:hover .kotak-img {
-            transform: scale(1.1);
-        }
-
-        /* Animasi */
-        .animated {
-            animation: fadeUp 1s forwards;
-        }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Link "Lihat Semua" */
-        .menu-link {
-            background-color: #0d6efd;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        /* Navbar Transparent */
-        .navbar-transparent {
-            background: rgba(0, 0, 0, 0.5) !important;
-        }
-
-        .navbar .navbar-nav.ml-auto {
-            margin-left: auto;
-        }
-
-    </style>
+  <style>
+    body {
+      background: linear-gradient(90deg, #50188b, #1e1e1e);
+    }
+    .carousel-image {
+      height: 450px;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .carousel-image {
+        height: 250px;
+      }
+    }
+    .kotak {
+      height: 350px;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      background: #f8f9fa;
+      transition: all 0.4s ease;
+    }
+    .kotak:hover {
+      background: #87CEFA;
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .kotak-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      transition: transform 0.4s ease;
+    }
+    .kotak:hover .kotak-img {
+      transform: scale(1.1);
+    }
+    .menu-link {
+      background: #0d6efd;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: white;
+    }
+    .navbar-transparent {
+      background: rgba(0, 0, 0, 0.5) !important;
+    }
+  </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<div class="sticky-top top-nav">
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-transparent shadow">
-        <div class="container">
-            <a href="index.html" class="d-flex align-items-center text-decoration-none">
-                <img src="assets/file/img/p.jpg" width="50" class="me-3" alt="Logo">
-            </a>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <!-- Kosongkan kalau tidak ada tombol login -->
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-transparent sticky-top shadow">
+  <div class="container">
+    <a href="index.html" class="d-flex align-items-center text-decoration-none">
+      <img src="assets/img/p.jpg" width="50" class="me-3" alt="Logo">
+    </a>
+  </div>
+</nav>
 
 <div class="container mt-5">
-    <!-- Banner Carousel -->
-    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="border-radius: 15px; overflow: hidden;">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="assets/file/img/bg4.jpg" class="d-block w-100 carousel-image" alt="Slide 1">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/file/img/bg3.jpg" class="d-block w-100 carousel-image" alt="Slide 2">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/file/img/bg5.jpg" class="d-block w-100 carousel-image" alt="Slide 3">
-            </div>
-        </div>
-        <!-- Carousel Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+  <!-- Carousel -->
+  <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="border-radius: 15px; overflow: hidden;">
+    <div class="carousel-inner">
+      <div class="carousel-item active"><img src="assets/img/bg4.jpg" class="d-block w-100 carousel-image" alt=""></div>
+      <div class="carousel-item"><img src="assets/img/bg3.jpg" class="d-block w-100 carousel-image" alt=""></div>
+      <div class="carousel-item"><img src="assets/img/bg5.jpg" class="d-block w-100 carousel-image" alt=""></div>
+      <div class="carousel-item"><img src="assets/img/bg6.jpg" class="d-block w-100 carousel-image" alt=""></div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+  <!-- Section Galeri -->
+  <div class="mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="fw-bold text-white">First Date</h3>
+      <a href="semua_foto.html" class="menu-link text-decoration-none">Lihat Semua →</a>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/1.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/2.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/3.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/4.jpg" class="kotak-img" alt=""></div></div>
     </div>
 
-    <!-- First Date -->
-    <div class="d-flex justify-content-between align-items-center mb-4 mt-5">
-        <h3 class="fw-bold">First Date</h3>
-        <a href="semua_foto.php" class="text-decoration-none text-white menu-link">Lihat Semua →</a>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/1.jpg" alt="Foto 1" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/2.jpg" alt="Foto 2" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/3.jpg" alt="Foto 3" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/4.jpg" alt="Foto 4" class="kotak-img"></div></div>
+    <h3 class="fw-bold text-white mt-5">Second Date</h3>
+    <div class="row g-3 mt-2">
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/10.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/11.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/12.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/13.jpg" class="kotak-img" alt=""></div></div>
     </div>
 
-    <!-- Second Date -->
-    <div class="d-flex justify-content-between align-items-center mb-4 mt-5">
-        <h3 class="fw-bold">Second Date</h3>
+    <h3 class="fw-bold text-white mt-5">Three Date</h3>
+    <div class="row g-3 mt-2">
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/8.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/5.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/6.jpg" class="kotak-img" alt=""></div></div>
+      <div class="col-md-6"><div class="kotak"><img src="assets/img/7.jpg" class="kotak-img" alt=""></div></div>
     </div>
-    <div class="row mt-4">
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/10.jpg" alt="Foto 5" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/11.jpg" alt="Foto 6" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/12.jpg" alt="Foto 7" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/13.jpg" alt="Foto 8" class="kotak-img"></div></div>
-    </div>
-
-    <!-- Three Date -->
-    <div class="d-flex justify-content-between align-items-center mb-4 mt-5">
-        <h3 class="fw-bold">Three Date</h3>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/8.jpg" alt="Foto 9" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/5.jpg" alt="Foto 10" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/6.jpg" alt="Foto 11" class="kotak-img"></div></div>
-        <div class="col-md-6 col-12 mb-3"><div class="kotak animated"><img src="assets/file/img/7.jpg" alt="Foto 12" class="kotak-img"></div></div>
-    </div>
+  </div>
 </div>
 
-
 <!-- Footer -->
-<footer class="mt-5 p-4 text-center" style="background: #50188b;">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <a href="https://www.instagram.com/rivaallast/?hl=en" target="_blank" class="text-decoration-none text-white" style="font-size: 20px;">
-                    <i class="bi bi-instagram fs-4 mx-3"></i> Instagram
-                </a>
-                <span class="mx-3" style="font-size: 20px;">|</span>
-                <a href="https://wa.me/6282213131920" target="_blank" class="text-decoration-none text-white" style="font-size: 20px;">
-                    <i class="bi bi-whatsapp fs-4 mx-3"></i> WhatsApp
-                </a>
-                <div class="mt-3 text-white">
-                    <p style="font-size: 24px;">&copy; Muhammad Rival Hanafi</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<footer class="mt-5 p-4 text-center" style="background: linear-gradient(90deg, #50188b, #1e1e1e)">
+  <div class="container text-white">
+    <a href="https://www.instagram.com/rivaallast/" target="_blank" class="text-white text-decoration-none mx-3">
+      <i class="bi bi-instagram fs-4"></i> Instagram
+    </a>
+    <a href="https://wa.me/6282213131920" target="_blank" class="text-white text-decoration-none mx-3">
+      <i class="bi bi-whatsapp fs-4"></i> WhatsApp
+    </a>
+    <p class="mt-3" style="font-size: 20px;">&copy; Muhammad Rival Hanafi</p>
+  </div>
 </footer>
 
 </body>
